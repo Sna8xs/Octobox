@@ -1,1 +1,1 @@
-pip install RPI.GPIO
+pip install RPi.GPIO
