@@ -10,7 +10,7 @@ from octoprint.events import Events
 import logging
 #from LedStripe import LedStripe
 
-plugin_url = "https://github.com/Sna8xs/Octobox/archive/refs/tags/Beta.zip"
+plugin_url = "https://github.com/Sna8xs/Octobox/archive/refs/tags/Beta2.zip"
 
 class Octobox(octoprint.plugin.OctoPrintPlugin):
     def __init__(self):
@@ -65,7 +65,7 @@ class Octobox(octoprint.plugin.OctoPrintPlugin):
 				current=self._plugin_version,
 
 				# update method: pip
-				pip="https://github.com/Sna8xs/Octobox/archive/refs/tags/Beta.zip"
+				pip="https://github.com/Sna8xs/Octobox/archive/refs/tags/Beta2.zip"
 			)
 		)
 
