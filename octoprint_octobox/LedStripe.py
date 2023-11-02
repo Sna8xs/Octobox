@@ -1,3 +1,4 @@
+"""
 import RPi.GPIO as GPIO
 import threading
 import time
@@ -51,3 +52,4 @@ class LedStripe:
             p.stop()
             GPIO.cleanup()
 
+""""""
