@@ -4,7 +4,7 @@ from octoprint.util import RepeatedTimer
 from octoprint.events import Events
 import octoprint.plugin
 import logging
-from LedStripe import LedStripe
+#from LedStripe import LedStripe
 
 class Octobox(octoprint.plugin.StartupPlugin):
     def __init__(self):
@@ -43,5 +43,5 @@ def __plugin_load__():
     plugin = Octobox()
     octoprint.plugin.register_plugin(plugin, __plugin_name__)
 
-__plugin_name__ = "Octobox"
+__plugin_pythoncompat__ = ">=3.11.3,<4"
 __plugin_implementation__ = Octobox()
