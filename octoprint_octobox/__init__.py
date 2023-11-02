@@ -2,16 +2,18 @@
 import octoprint
 from octoprint.util import RepeatedTimer
 from octoprint.events import Events
+import octoprint.plugin
 import logging
 from LedStripe import LedStripe
 
-class Octobox:
+class Octobox(octoprint.plugin.StartupPlugin):
     def __init__(self):
-        self._logger = logging.getLogger(__name__)
         self._temp_timer = None
 
     def on_after_startup(self):
         self._logger.info("Octobox started.")
+        self._logger.info(f"Bed Temperature: {bed_temp} °C")
+        self._logger.info(f"Nozzle Temperature: {nozzle_temp} °C")
         self.ledstripe = LedStripe(17, 27, 22)
 
 
@@ -35,9 +37,6 @@ class Octobox:
 
         self._logger.info(f"Bed Temperature: {bed_temp} °C")
         self._logger.info(f"Nozzle Temperature: {nozzle_temp} °C")
-
-    def print_failed():
-        pass
 
 def __plugin_load__():
     plugin = Octobox()
