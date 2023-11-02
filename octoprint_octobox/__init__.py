@@ -35,9 +35,9 @@ class Octobox(octoprint.plugin.OctoPrintPlugin):
         if event == Events.PRINT_STARTED:
             self._temp_timer = RepeatedTimer(60, self.get_temperatures)
             self._temp_timer.start()
-        elif event == Events.PRINT_DONE:
+        if event == Events.PRINT_DONE:
             #self.ledstripe.print_done()
-        elif event == Events.PRINT_FAILED:
+        if event == Events.PRINT_FAILED:
             #self.ledstripe.print_failed()
 
     def get_temperatures(self):
@@ -70,7 +70,7 @@ class Octobox(octoprint.plugin.OctoPrintPlugin):
 		)
 
 
-__plugin_pythoncompat__ = ">=3.7,<4"
+__plugin_pythoncompat__ = ">=3.9,<4"
 
 def __plugin_load__():
     global __plugin_implementation__
