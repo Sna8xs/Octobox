@@ -6,6 +6,8 @@ import octoprint.plugin
 import logging
 #from LedStripe import LedStripe
 
+plugin_url = "https://github.com/Sna8xs/Octobox/archive/refs/tags/Beta.zip"
+
 class Octobox(octoprint.plugin.StartupPlugin):
     def __init__(self):
         self._temp_timer = None
@@ -13,8 +15,10 @@ class Octobox(octoprint.plugin.StartupPlugin):
 
     def on_after_startup(self):
         self._logger.info("Octobox started.")
-        self._logger.info(f"Bed Temperature: {self._printer.get_current_temperatures()["bed"]["actual"]} °C")
-        self._logger.info(f"Nozzle Temperature: {self._printer.get_current_temperatures()["tool0"]["actual"]} °C")
+        bed_temp = self._printer.get_current_temperatures()["bed"]["actual"]
+        nozzle_temp = self._printer.get_current_temperatures()["tool0"]["actual"]
+        self._logger.info(f"Bed Temperature: {bed_temp} °C")
+        self._logger.info(f"Nozzle Temperature: {nozzle_temp} °C")
         #self.ledstripe = LedStripe(17, 27, 22)
 
 
