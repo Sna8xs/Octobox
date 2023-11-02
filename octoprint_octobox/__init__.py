@@ -1,14 +1,18 @@
 # Import the necessary modules
+
+# coding=utf-8
+from __future__ import absolute_import
+
+
 import octoprint
 from octoprint.util import RepeatedTimer
 from octoprint.events import Events
-import octoprint.plugin
 import logging
 #from LedStripe import LedStripe
 
 plugin_url = "https://github.com/Sna8xs/Octobox/archive/refs/tags/Beta.zip"
 
-class Octobox(octoprint.plugin.StartupPlugin):
+class Octobox(octoprint.plugin.OctoPrintPlugin):
     def __init__(self):
         self._temp_timer = None
         #self.ledstripe = None
@@ -43,9 +47,39 @@ class Octobox(octoprint.plugin.StartupPlugin):
         self._logger.info(f"Bed Temperature: {bed_temp} °C")
         self._logger.info(f"Nozzle Temperature: {nozzle_temp} °C")
 
+
+
+    def get_update_information(self):
+		# Define the configuration for your plugin to use with the Software Update
+		# Plugin here. See https://docs.octoprint.org/en/master/bundledplugins/softwareupdate.html
+		# for details.
+		return dict(
+			restorelevelingafterg28=dict(
+				displayName="OctoBox",
+				displayVersion=self._plugin_version,
+
+				# version check: github repository
+				type="github_release",
+				user="Sna8xs",
+				repo="Octobox",
+				current=self._plugin_version,
+
+				# update method: pip
+				pip="https://github.com/Sna8xs/Octobox/archive/refs/tags/Beta.zip"
+			)
+		)
+
+
+__plugin_pythoncompat__ = ">=3.7,<4"
+
 def __plugin_load__():
-    plugin = Octobox()
+    global __plugin_implementation__
+    __plugin_implementation__ = Octobox()
     octoprint.plugin.register_plugin(plugin, __plugin_name__)
 
-__plugin_pythoncompat__ = ">=3.11.3,<4"
-__plugin_implementation__ = Octobox()
+    global __plugin_hooks__
+	__plugin_hooks__ = {
+		"octoprint.plugin.softwareupdate.check_config": __plugin_implementation__.get_update_information
+	}
+
+

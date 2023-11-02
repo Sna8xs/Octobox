@@ -16,7 +16,7 @@ plugin_version = "1.0.0"
 plugin_description = """A plugin for octopi which handels fans and RGB's of a printer enclosure"""
 
 # The plugin's author. Can be overwritten within OctoPrint's internal data via __plugin_author__ in the plugin module
-plugin_author = "Sna8x"
+plugin_author = "Sna8xs"
 
 # The plugin's author's mail address.
 plugin_author_email = "code@test.org"
